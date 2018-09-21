@@ -1,0 +1,31 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  creationTimestamp: '2018-09-21T12:08:19Z'
+  name: elasticsearch-build
+  namespace: es6
+  resourceVersion: '2671556120'
+  selfLink: /apis/build.openshift.io/v1/namespaces/es6/buildconfigs/elasticsearch
+  uid: 076f4577-bd97-11e8-bef2-0ab8769191d3
+spec:
+  nodeSelector: null
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'elasticsearch-image:latest'
+  postCommit: {}
+  resources: {}
+  runPolicy: Serial
+  source:
+    git:
+      uri: 'https://github.com/seanshihny/openshift'
+    type: Git
+  strategy:
+    sourceStrategy:
+      from:
+        kind: ImageStreamTag
+        name: 'builder-image:latest'
+    type: Source
+  triggers: []
+status:
+  lastVersion: 0
