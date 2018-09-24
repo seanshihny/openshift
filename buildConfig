@@ -12,20 +12,15 @@ spec:
   output:
     to:
       kind: ImageStreamTag
-      name: 'elasticsearch-image:latest'
+      name: 'elasticsearch6-build:latest'
   postCommit: {}
   resources: {}
   runPolicy: Serial
   source:
-    git:
-      uri: 'https://github.com/seanshihny/openshift'
-    type: Git
+    dockerfile: 'FROM docker.elastic.co/elasticsearch/elasticsearch:6.4.1\nUSER root\nRUN chgrp -R 1000 /usr/share/elasticsearch && chmod -R g+rx /usr/share/elasticsearch/\nUSER elasticsearch'
   strategy:
-    sourceStrategy:
-      from:
-        kind: ImageStreamTag
-        name: 'builder-image:latest'
-    type: Source
+    dockerStrategy:
+      noCache: true
   triggers: []
 status:
   lastVersion: 0
