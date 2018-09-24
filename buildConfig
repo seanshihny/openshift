@@ -2,7 +2,7 @@ apiVersion: build.openshift.io/v1
 kind: BuildConfig
 metadata:
   creationTimestamp: '2018-09-21T12:08:19Z'
-  name: elasticsearch-build
+  name: elasticsearch6-build
   namespace: es6
   resourceVersion: '2671556120'
   selfLink: /apis/build.openshift.io/v1/namespaces/es6/buildconfigs/elasticsearch
@@ -17,10 +17,10 @@ spec:
   resources: {}
   runPolicy: Serial
   source:
-    dockerfile: 'FROM docker.elastic.co/elasticsearch/elasticsearch:6.4.1\nUSER root\nRUN chgrp -R 1000 /usr/share/elasticsearch && chmod -R g+rx /usr/share/elasticsearch/\nUSER elasticsearch'
+    git:
+      uri: 'https://github.com/seanshihny/openshift.git'
   strategy:
-    dockerStrategy:
-      noCache: true
+    sourceStrategy:
   triggers: []
 status:
   lastVersion: 0
