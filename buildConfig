@@ -21,6 +21,9 @@ spec:
       uri: 'https://github.com/seanshihny/openshift.git'
   strategy:
     sourceStrategy:
+      from:
+        kind: ImageStreamTag
+        name: 'elastic:6.4.1'
   triggers: []
 status:
   lastVersion: 0
